@@ -1,0 +1,6 @@
+w,a, s, d = Move
+Left Shift = Run if you have energy
+F = on, off torch
+Right button mouse = open inventory
+Left button mouse = Interact or use object in inventory when the inventory is opened
+esc = pause
