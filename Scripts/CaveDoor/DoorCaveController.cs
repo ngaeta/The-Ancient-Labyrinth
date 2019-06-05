@@ -13,6 +13,17 @@ public class DoorCaveController : MonoBehaviour {
 	public ButtonCaveInteraction[] buttonCaveOrderToPush;
 	public AudioTimer audioTimer;
 	public AudioDoorCave audio;
+    public bool OpenDebug;
+
+    void Start()
+    {
+        if(OpenDebug)
+        {
+            BroadcastMessage("Open");
+            if (OnDoorOpenedEvent != null)
+                OnDoorOpenedEvent();
+        }
+    }
 
 	public bool ButtonCavePressed(ButtonCaveInteraction buttonPressed) {
 	

@@ -6,8 +6,7 @@ public class GemParticleInteraction : MonoBehaviour {
 
 	public GameObject particle;
 
-
-	public void SwitchParticle() {
-		particle.SetActive (!particle.activeInHierarchy);
+	public void SwitchParticle(bool value) {
+		particle.SetActive (value);
 	}
 }

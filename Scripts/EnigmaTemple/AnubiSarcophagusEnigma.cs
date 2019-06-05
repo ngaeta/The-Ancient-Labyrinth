@@ -7,15 +7,20 @@ public class AnubiSarcophagusEnigma : MonoBehaviour {
 	public delegate void EnigmaStatus ();
 	public static event EnigmaStatus OnEnigmaResolved, OnEnigmaWrong;
 	public GemInteractionEnigma[] OrderToResolveEnigma;
+    public float TimeToOffParticles = 10f;
+
 	private List<GemInteractionEnigma> m_GemSwitched;
+    private float currTimeToOff;
 
 	void Start() {
 		m_GemSwitched = new List<GemInteractionEnigma> ();
+        currTimeToOff = TimeToOffParticles;
 	}
 
 	public void GemSwitched(GemInteractionEnigma gem) {
 		
 		m_GemSwitched.Add(gem);
+        currTimeToOff = TimeToOffParticles;
 
 		if (m_GemSwitched.Count == OrderToResolveEnigma.Length) 
 		{
@@ -23,14 +28,25 @@ public class AnubiSarcophagusEnigma : MonoBehaviour {
 			if (enigmaResolved) {
 				if(OnEnigmaResolved != null)
 					OnEnigmaResolved ();
-			}
-			else {
-				if(OnEnigmaWrong != null)
-					OnEnigmaWrong ();
-				m_GemSwitched.Clear ();
+                Destroy(this);
 			}
 		}
 	}
+
+    void Update()
+    {
+        if(m_GemSwitched.Count > 0)
+        {
+            if (currTimeToOff <= 0)
+            {
+                if (OnEnigmaWrong != null)
+                    OnEnigmaWrong();
+                m_GemSwitched.Clear();
+            }
+            else
+                currTimeToOff -= Time.deltaTime;
+        }
+    }
 
 	private bool ControlEnigma() {
 	

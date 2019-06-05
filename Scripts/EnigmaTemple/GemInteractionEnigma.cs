@@ -16,11 +16,12 @@ public class GemInteractionEnigma : MonoBehaviour, ObjectInteraction {
 	void Start () {
 		m_IsAlreadyClicked = false;
 		AnubiSarcophagusEnigma.OnEnigmaWrong += SwitchOff;
-	}
+    }
 		
 	public void SwitchOff() {
-		StartCoroutine (WaitSeconds ());
-	}
+        particle.SwitchParticle(false);
+        m_IsAlreadyClicked = false;
+    }
 
 	#region ObjectInteraction implementation
 
@@ -28,7 +29,7 @@ public class GemInteractionEnigma : MonoBehaviour, ObjectInteraction {
 	{
 		if (!m_IsAlreadyClicked) {
 			m_IsAlreadyClicked = true;
-			particle.SwitchParticle ();
+			particle.SwitchParticle (true);
 			audioGem.FlameOn ();
 			enigma.GemSwitched (this);
 			anubiEye.GemSwitched (this);
@@ -46,11 +47,4 @@ public class GemInteractionEnigma : MonoBehaviour, ObjectInteraction {
 	}
 
 	#endregion
-
-	private IEnumerator WaitSeconds() {
-		yield return new WaitForSecondsRealtime (timeToTurnOffFlame);
-		particle.SwitchParticle ();
-		m_IsAlreadyClicked = false;
-	}
-
 }
