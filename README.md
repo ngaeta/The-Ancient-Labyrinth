@@ -5,8 +5,6 @@
 About the project
 ============
 My first real Unity project. I started developing it in 2017, before starting to study videogame programming at AIV(Italian videogame academy).
-I didn't know Unity very well so I think the code isn't very well written, but it all works pretty well to the point that could release it 
-on steam if I could solve the problems related above all to the licenses of the models.
  
  About the game
  ===========
