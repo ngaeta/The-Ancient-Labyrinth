@@ -1,4 +1,4 @@
-# TheAncientLabyrintBetaUnity
+# The Ancient Labyrinth
 
 ![Screenshot](preview_image.png)
 
